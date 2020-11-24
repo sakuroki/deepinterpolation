@@ -81,7 +81,18 @@ class core_trainer:
 
         # Generator has to be initialized first to provide
         # input size of network
-        self.initialize_generator()
+        #self.initialize_generator()
+        
+        # modified by sk 2020/11/20
+        
+        # "nb_max_epoch" aims to reduce to total number of training
+        # "nb_max_epoch" should not exceed "else" condition
+        if "nb_max_epoch" in json_data.keys():
+            self.epochs = json_data["nb_max_epoch"]
+        else:
+            self.epochs = self.nb_times_through_data * int(
+                np.floor(len(self.local_generator) / self.steps_per_epoch)
+            )
 
         if self.nb_gpus > 1:
             mirrored_strategy = tensorflow.distribute.MirroredStrategy()
@@ -152,10 +163,10 @@ class core_trainer:
 
         self.callbacks_list = callbacks_list
 
-    def initialize_generator(self):
-        self.epochs = self.nb_times_through_data * int(
-            np.floor(len(self.local_generator) / self.steps_per_epoch)
-        )
+    #def initialize_generator(self):
+    #    self.epochs = self.nb_times_through_data * int(
+    #        np.floor(len(self.local_generator) / self.steps_per_epoch)
+    #    )
 
     def initialize_network(self):
         local_size = self.local_generator.get_input_size()
