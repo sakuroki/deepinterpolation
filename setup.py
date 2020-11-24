@@ -16,7 +16,7 @@ setup(
     long_description=readme,
     author="Jerome Lecoq",
     author_email="jeromel@alleninstitute.org",
-    url="https://github.com/AllenInstitute/deepinterpolation",
+    url="https://github.com/sakuroki/deepinterpolation",
     license=license,
     packages=find_packages(exclude=("tests", "docs")),
 )
