@@ -516,7 +516,8 @@ class EphysGenerator(DeepGenerator):
         # This is compatible with negative frames
         self.end_frame = self.json_data["end_frame"]
 
-        self.nb_probes = 384
+        #self.nb_probes = 384
+        self.nb_probes = self.json_data["nb_probes"] # modified by sk 2020/11/20
 
         self.raw_data = np.memmap(self.raw_data_file, dtype="int16")
 
